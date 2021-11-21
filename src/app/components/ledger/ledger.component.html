@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="buy-tokens-form">
+        <label for="tokensCount">Number of tokens:</label>
+        <input type="number" name="tokensCount" [(ngModel)]="count">
+        <button (click)="buyTokens()">Buy</button>
+    </div>
+    <app-transaction-list></app-transaction-list>
+</div>

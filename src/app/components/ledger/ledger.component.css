@@ -1,0 +1,7 @@
+.buy-tokens-form {
+    display: flex;
+    justify-content: center;
+}
+label {
+    margin-right: 5px;
+}

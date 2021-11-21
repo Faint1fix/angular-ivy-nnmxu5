@@ -1,0 +1,10 @@
+<div class="navbar">
+  <p id="logo">Arcade Token Tracking System</p>
+  <ul>
+    <li><a href="#" [class.active]="getCurrentUrl() === '/'" routerLink="/">Games</a></li>
+    <li><a href="#" [class.active]="getCurrentUrl() === '/ledger'" routerLink="/ledger">Ledger</a></li>
+  </ul>
+  <button (click)="buyTokens()"><b>+</b></button>
+  <p id="tokens"><b>{{ currentUser.tokens }} T</b></p>
+  <p id="user-name"><b>{{ currentUser.name }}</b></p>
+</div>
