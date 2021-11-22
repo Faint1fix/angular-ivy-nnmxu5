@@ -12,12 +12,15 @@ export abstract class Transaction {
   public openingBalance: number = 0;
   public currentBalance: number = 0;
   public description: string = '';
+  public createdDate: Date;
 
   constructor(user: User) {
+    this.id = new Date().getTime(); //uuid
     this.user = user;
+    this.createdDate = new Date();
   }
 
-  makeTransaction(): void { }
+  makeTransaction(): void {}
 }
 
 export class PlayGameTransaction extends Transaction {
@@ -31,10 +34,13 @@ export class PlayGameTransaction extends Transaction {
   makeTransaction(): void {
     this.openingBalance = this.user.tokens;
     this.currentBalance = this.openingBalance - this.game.cost;
-    this.description = `You have used ${this.game.cost} ${this.game.cost === 1 ? 'token' : 'tokens'} - "${this.game.name}"`
+    this.description = `You have used ${this.game.cost} ${
+      this.game.cost === 1 ? 'token' : 'tokens'
+    } - "${this.game.name}"`;
 
     this.user.tokens = this.currentBalance;
-   }
+    this.user.tokensObservable.next(this.user.tokens);
+  }
 }
 
 export class PurchaseTokensTransaction extends Transaction {
@@ -48,27 +54,27 @@ export class PurchaseTokensTransaction extends Transaction {
   makeTransaction(): void {
     this.openingBalance = this.user.tokens;
     this.currentBalance = this.openingBalance + this.numberOfTokens;
-    this.description = `You have purchased ${this.numberOfTokens} ${this.numberOfTokens === 1 ? 'token' : 'tokens'} 
+    this.description = `You have purchased ${this.numberOfTokens} ${
+      this.numberOfTokens === 1 ? 'token' : 'tokens'
+    } 
     for ${this.numberOfTokens * tokenCost}$`;
 
     this.user.tokens = this.currentBalance;
-   }
+    this.user.tokensObservable.next(this.user.tokens);
+  }
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TransactionService {
-
   private transactionsList: Transaction[] = [];
 
-  constructor() { }
+  constructor() {}
 
   makeTransaction(transaction: Transaction): void {
-    transaction.id = this.transactionsList.length + 1;
     transaction.makeTransaction();
     this.transactionsList.push(transaction);
-    
   }
 
   getHistory(): Observable<Transaction[]> {

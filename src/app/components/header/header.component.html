@@ -1,10 +1,20 @@
 <div class="navbar">
   <p id="logo">Arcade Token Tracking System</p>
   <ul>
-    <li><a href="#" [class.active]="currentUrl === '/'" routerLink="/">Games</a></li>
-    <li><a href="#" [class.active]="currentUrl === '/ledger'" routerLink="/ledger">Ledger</a></li>
+    <li>
+      <a href="#" [class.active]="currentUrl === '/'" routerLink="/">Games</a>
+    </li>
+    <li>
+      <a href="#" [class.active]="currentUrl === '/ledger'" routerLink="/ledger"
+        >Ledger</a
+      >
+    </li>
   </ul>
   <button (click)="buyTokens()"><b>+</b></button>
-  <p id="tokens"><b>{{ currentUser.tokens }} T</b></p>
-  <p id="user-name"><b>{{ currentUser.name }}</b></p>
+  <p id="tokens">
+    <b>{{ currentUser.tokensObservable | async }} T</b>
+  </p>
+  <p id="user-name">
+    <b>{{ currentUser.name }}</b>
+  </p>
 </div>

@@ -8,8 +8,7 @@ import { Transaction } from '../../services/transaction.service'
   styleUrls: ['./transaction-item.component.css']
 })
 export class TransactionItemComponent {
-
-  @Input() transaction: Transaction = {} as Transaction;
+  @Input() transaction: Transaction
 
   constructor() { }
 }

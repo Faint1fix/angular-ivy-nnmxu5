@@ -6,15 +6,12 @@ import { User, UserService } from '../../services/user.service';
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  currentUser: User = {
-    name: 'emptyUser',
-    tokens: -1,
-  }
+  currentUser: User;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.currentUser = this.userService.getUser();

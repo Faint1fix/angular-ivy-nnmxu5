@@ -1,7 +1,8 @@
 <div class="container">
-    <p>
-        {{ transaction.id }}. {{ transaction.description }}; Opening balance:
-        {{ transaction.openingBalance }}; Current balance:
-        {{ transaction.currentBalance }};
-    </p>
+  <p>
+    {{ transaction.description }}; Opening balance:
+    {{ transaction.openingBalance }}; Current balance:
+    {{ transaction.currentBalance }};
+    {{ transaction.createdDate | date: 'medium' }}
+  </p>
 </div>
