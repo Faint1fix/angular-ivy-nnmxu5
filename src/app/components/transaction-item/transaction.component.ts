@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Transaction } from '../../services/history.service'
+import { Transaction } from '../../services/transaction.service'
 
 @Component({
   selector: 'app-transaction-item',
@@ -9,12 +9,7 @@ import { Transaction } from '../../services/history.service'
 })
 export class TransactionItemComponent {
 
-  @Input() transaction: Transaction = {
-    id: -1,
-    openingBalance: 0,
-    currentBalance: 0,
-    description: 'empty description'
-  };
+  @Input() transaction: Transaction = {} as Transaction;
 
   constructor() { }
 }

@@ -1,3 +1,4 @@
+import { TransactionService, PurchaseTokensTransaction } from './../../services/transaction.service';
 import { Component, OnInit } from '@angular/core';
 
 import { UserService } from './../../services/user.service';
@@ -9,17 +10,18 @@ import { UserService } from './../../services/user.service';
 })
 export class LedgerComponent implements OnInit {
 
-  count: number = 0;
+  numberOfTokens: number = 0;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private transactionService: TransactionService) { }
 
   ngOnInit(): void {
   }
 
   buyTokens(): void {
-    this.count = Math.floor(this.count);
-    if (this.count > 0) {
-      this.userService.purchaseTokens(this.count);
+    this.numberOfTokens = Math.floor(this.numberOfTokens);
+    if (this.numberOfTokens > 0) {
+      const user = this.userService.getUser();
+      this.transactionService.makeTransaction(new PurchaseTokensTransaction(user,this.numberOfTokens))
     }
   }
 }

@@ -3,6 +3,6 @@
         <p><strong>{{game.name}}</strong> </p>
     </div>
     <div class="btn-container">
-        <button type="button" [disabled]="!canPlay()" (click)="play()">Play<br>{{game.cost}}T</button>
+        <button type="button" [disabled]="!canPlay" (click)="play()">Play<br>{{game.cost}}T</button>
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TransactionService, PlayGameTransaction } from './../../services/transaction.service';
 
 import { Game } from '../../game';
 import { UserService } from '../../services/user.service';
@@ -14,13 +15,14 @@ export class GameItemComponent {
     cost: 0,
   };
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private transactionService: TransactionService) { }
 
-  canPlay(): boolean {
+  get canPlay(): boolean {
     return this.userService.getUser().tokens >= this.game.cost;
   }
 
   play(): void {
-    this.userService.playGame(this.game);
+    const user = this.userService.getUser();
+    this.transactionService.makeTransaction(new PlayGameTransaction(user,this.game));
   }
 }

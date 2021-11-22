@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 import { Game, Games } from './../game';
 
@@ -9,7 +10,7 @@ export class GamesService {
 
   constructor() { }
 
-  getGames(): Game[] {
-    return Games;
+  getGames(): Observable<Game[]> {
+    return of(Games);
   }
 }

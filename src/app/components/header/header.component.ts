@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     this.currentUser = this.userService.getUser();
   }
 
-  getCurrentUrl(): string {
+  get currentUrl(): string {
     return this.router.url;
   }
 
